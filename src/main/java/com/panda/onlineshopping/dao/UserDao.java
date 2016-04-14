@@ -14,22 +14,27 @@ public class UserDao implements IUserDao {
 	@Autowired
 	private HibernateUtils hibernateUtil;
 
+	@Override
 	public void createUser(User user) {
 		hibernateUtil.create(user);
 	}
 
+	@Override
 	public User updateUser(User user) {
 		return hibernateUtil.update(user);
 	}
 
+	@Override
 	public void deleteUser(User user) {
 		hibernateUtil.delete(user);
 	}
 
+	@Override
 	public List<User> getAllUsers() {
 		return hibernateUtil.fetchAll(User.class);
 	}
 
+	@Override
 	public User getUserById(int userId) {
 		return hibernateUtil.fetchById(userId, User.class);
 	}
