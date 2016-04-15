@@ -1,6 +1,5 @@
 package com.panda.onlineshopping.entities;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,10 +17,10 @@ public class CartItem {
 	@Column(name = "id")
 	private int id;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "cart_id")
 	private Cart cart;
-	
+
 	@Column(name = "inventory")
 	private String inventory;
 
