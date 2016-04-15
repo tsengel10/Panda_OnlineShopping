@@ -34,4 +34,9 @@ public class Cart extends User {
 		this.cartItems = cartItems;
 	}
 
+	@Override
+	public String toString() {
+		return "Cart [cartItems=" + cartItems + ", userid=" + userid + "]";
+	}
+
 }
