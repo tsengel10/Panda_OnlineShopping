@@ -23,7 +23,6 @@ public class UserService implements IUserService {
 	@Override
 	public void createUser(User user) {
 		adminDao.createUser(user);
-
 	}
 
 	@Override
@@ -59,4 +58,5 @@ public class UserService implements IUserService {
 		else
 			return null;
 	}
+
 }

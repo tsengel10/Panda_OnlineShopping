@@ -12,19 +12,32 @@ import javax.persistence.Table;
 @PrimaryKeyJoinColumn(name = "user_userid")
 public class Vendor extends User {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(updatable = false)
 	int vendorid;
 	@Column
-	String vendorName;
+	private String vendorName;
 	@Column
-	String vendorCode;
+	private String vendorCode;
 	@Column
-	String email;
+	private String phone;
 	@Column
-	String phone;
+	private String image_link;
 
 	public Vendor() {
 
+	}
+
+	public String getImage_link() {
+		return image_link;
+	}
+
+	public void setImage_link(String image_link) {
+		this.image_link = image_link;
 	}
 
 	public int getVendorid() {
@@ -51,14 +64,6 @@ public class Vendor extends User {
 		this.vendorCode = vendorCode;
 	}
 
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
 	public String getPhone() {
 		return phone;
 	}
@@ -69,9 +74,9 @@ public class Vendor extends User {
 
 	@Override
 	public String toString() {
-		return "Vendor [vendorName=" + vendorName + ", vendorCode=" + vendorCode + ", email=" + email + ", phone="
-				+ phone + ", userid=" + userid + ", username=" + username + ", password=" + password + ", usertype="
-				+ usertype + "]";
+		return "Vendor [vendorid=" + vendorid + ", vendorName=" + vendorName + ", vendorCode=" + vendorCode + ", phone="
+				+ phone + ", image_link=" + image_link + ", userid=" + userid + ", username=" + username + ", password="
+				+ password + ", usertype=" + usertype + ", addresses=" + addresses + "]";
 	}
 
 }

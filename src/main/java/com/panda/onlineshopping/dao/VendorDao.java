@@ -16,9 +16,6 @@ public class VendorDao implements IVendorDao {
 
 	@Override
 	public void createVendor(Vendor vendor) {
-
-		System.out.println("======= Im vendor");
-		System.out.println(vendor);
 		hibernateUtil.create(vendor);
 	}
 
@@ -38,7 +35,7 @@ public class VendorDao implements IVendorDao {
 	}
 
 	@Override
-	public Vendor getVendor(int vendorId) {
+	public Vendor getVendorById(int vendorId) {
 		return hibernateUtil.fetchById(vendorId, Vendor.class);
 	}
 

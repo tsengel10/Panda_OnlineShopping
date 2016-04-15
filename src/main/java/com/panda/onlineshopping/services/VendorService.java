@@ -37,7 +37,7 @@ public class VendorService implements IVendorService {
 
 	@Override
 	public Vendor getVendorById(int vendorId) {
-		return vendorDao.getVendor(vendorId);
+		return vendorDao.getVendorById(vendorId);
 	}
 
 }

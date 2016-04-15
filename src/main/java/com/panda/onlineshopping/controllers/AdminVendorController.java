@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import com.panda.onlineshopping.entities.Vendor;
+import com.panda.onlineshopping.services.AddressService;
 import com.panda.onlineshopping.services.VendorService;
 
 @Controller
@@ -22,7 +22,8 @@ public class AdminVendorController {
 
 	@Autowired
 	private VendorService vendorService;
-	JsonNode node;
+	@Autowired
+	private AddressService addressService;
 
 	@RequestMapping(value = "create", method = RequestMethod.POST)
 	public ResponseEntity<Vendor> createVendor(@RequestBody Vendor vendor) {
@@ -49,6 +50,7 @@ public class AdminVendorController {
 		if (vendor == null) {
 			return new ResponseEntity<Vendor>(HttpStatus.NOT_FOUND);
 		}
+		addressService.deleteAddressesByUserId(vendorId);
 		vendorService.deleteVendor(vendor);
 		return new ResponseEntity<Vendor>(HttpStatus.OK);
 	}

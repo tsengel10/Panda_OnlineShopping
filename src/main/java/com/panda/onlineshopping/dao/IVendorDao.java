@@ -14,6 +14,6 @@ public interface IVendorDao {
 
 	public List<Vendor> getAllVendors();
 
-	public Vendor getVendor(int vendorId);
+	public Vendor getVendorById(int vendorId);
 
 }
