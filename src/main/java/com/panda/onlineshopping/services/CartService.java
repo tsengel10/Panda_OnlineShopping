@@ -14,8 +14,8 @@ public class CartService implements ICartService {
 	private CartDao cartDao;
 
 	@Override
-	public Cart getByUserId(int id) {
-		return cartDao.getByUserId(id);
+	public Cart getByUserId(int userId) {
+		return cartDao.getByUserId(userId);
 	}
 
 	@Override

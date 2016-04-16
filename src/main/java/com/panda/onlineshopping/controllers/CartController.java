@@ -1,7 +1,6 @@
 package com.panda.onlineshopping.controllers;
 
-import java.util.List;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -10,26 +9,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.panda.onlineshopping.entities.Cart;
+import com.panda.onlineshopping.services.CartService;
 
 @Controller
 @RequestMapping("/cart")
 public class CartController {
 
-//	@Autowired
-//	private CartService cartService;
+	@Autowired
+	private CartService cartService;
 
-	@RequestMapping(value = "test/{id}", method = RequestMethod.GET)
-	public ResponseEntity<List<Cart>> getTest(@PathVariable int id) {
-//		List<Cart> carts = cartService.getAll();
-//		if (carts.isEmpty()) {
+	@RequestMapping(value = "items/{userId}", method = RequestMethod.GET)
+	public ResponseEntity<Cart> getCartItems(@PathVariable int userId) {
+		Cart cart = cartService.getByUserId(userId);
+//		Set<CartItem> items = cart.getCartItems();
+//		if (items.isEmpty()) {
+//			return new ResponseEntity<Cart>(HttpStatus.NO_CONTENT);
 //		}
-//		return new ResponseEntity<List<Cart>>(carts, HttpStatus.OK);
-		return new ResponseEntity<List<Cart>>(HttpStatus.NO_CONTENT);
-
-		// List<User> admins = userService.getAllAdmins();
-		// if (admins.isEmpty()) {
-		// return new ResponseEntity<List<User>>(HttpStatus.NO_CONTENT);
-		// }
-		// return new ResponseEntity<List<User>>(admins, HttpStatus.OK);
+		return new ResponseEntity<Cart>(cart, HttpStatus.OK);
 	}
 }

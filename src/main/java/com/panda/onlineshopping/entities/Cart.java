@@ -1,5 +1,6 @@
 package com.panda.onlineshopping.entities;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -8,6 +9,8 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "cart")
@@ -19,8 +22,9 @@ public class Cart extends User {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "cart", cascade = CascadeType.ALL)
-	private Set<CartItem> cartItems;
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "cart", cascade = CascadeType.ALL)
+	@JsonIgnore
+	private Set<CartItem> cartItems = new HashSet<>();
 
 	public Cart() {
 		// TODO Auto-generated constructor stub
