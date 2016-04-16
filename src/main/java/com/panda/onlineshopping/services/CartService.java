@@ -3,10 +3,12 @@ package com.panda.onlineshopping.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.panda.onlineshopping.dao.CartDao;
 import com.panda.onlineshopping.entities.Cart;
 
+@Service
 public class CartService implements ICartService {
 	@Autowired
 	private CartDao cartDao;
