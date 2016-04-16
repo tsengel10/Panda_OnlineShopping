@@ -15,4 +15,6 @@ public interface IUserDao {
 	public List<User> getAllUsers();
 
 	public User getUserById(int adminId);
+
+	
 }

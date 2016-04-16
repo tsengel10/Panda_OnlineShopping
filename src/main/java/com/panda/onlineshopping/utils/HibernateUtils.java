@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -15,6 +16,19 @@ public class HibernateUtils {
 
 	@Autowired
 	private SessionFactory sessionFactory;
+
+	public Object runSelectQuery(String q) {
+		Query query = sessionFactory.getCurrentSession().createQuery(q);
+		Object obj = query.uniqueResult();
+		return obj;
+	}
+
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public <T> List<T> runSelectQueryList(String q) {
+		Query query = sessionFactory.getCurrentSession().createQuery(q);
+		List list = query.list();
+		return list;
+	}
 
 	public <T> Serializable create(final T entity) {
 		return sessionFactory.getCurrentSession().save(entity);

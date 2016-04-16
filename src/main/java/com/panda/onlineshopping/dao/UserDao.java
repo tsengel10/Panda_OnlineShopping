@@ -38,4 +38,5 @@ public class UserDao implements IUserDao {
 	public List<Address> getAllAddresses() {
 		return hibernateUtil.fetchAll(Address.class);
 	}
+
 }

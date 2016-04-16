@@ -6,7 +6,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.panda.onlineshopping.dao.AuthenticationDao;
 import com.panda.onlineshopping.dao.UserDao;
+import com.panda.onlineshopping.entities.AuthToken;
 import com.panda.onlineshopping.entities.User;
 
 @Service
@@ -14,6 +16,8 @@ public class UserService implements IUserService {
 
 	@Autowired
 	private UserDao adminDao;
+	@Autowired
+	private AuthenticationDao authDao;
 
 	@Override
 	public User getUserById(int userId) {
@@ -57,6 +61,46 @@ public class UserService implements IUserService {
 			return admin;
 		else
 			return null;
+	}
+
+	@Override
+	public User authenticateUser(User user) {
+		return authDao.authenticateUser(user);
+	}
+
+	@Override
+	public AuthToken generateTokenForUser(User user) {
+		return authDao.generateTokenForUser(user);
+	}
+
+	@Override
+	public void createAuthToken(AuthToken authToken) {
+		authDao.createAuthToken(authToken);
+	}
+
+	@Override
+	public void setInactiveAuthToken(AuthToken authToken) {
+		authDao.setInactiveAuthToken(authToken);
+	}
+
+	@Override
+	public List<AuthToken> getAllInactiveAuthTokensByUser(User user) {
+		return authDao.getAllInactiveAuthTokensByUser(user);
+	}
+
+	@Override
+	public AuthToken getActiveAuthTokenByUser(User user) {
+		return authDao.getActiveAuthTokenByUser(user);
+	}
+
+	@Override
+	public boolean isActiveToken(String token) {
+		return authDao.isActiveToken(token);
+	}
+
+	@Override
+	public AuthToken getTokenByToken(String token) {
+		return authDao.getTokenByToken(token);
 	}
 
 }

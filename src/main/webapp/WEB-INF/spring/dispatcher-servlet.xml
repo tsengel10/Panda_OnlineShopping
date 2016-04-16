@@ -13,6 +13,14 @@
 
 	<mvc:annotation-driven />
 
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<!-- This interceptor will only run in /project -->
+			<mvc:mapping path="/admin/**" />
+			<bean class="com.panda.onlineshopping.interceptors.AuthInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+
 	<!-- DataSource -->
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
 		destroy-method="close">
