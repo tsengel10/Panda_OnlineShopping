@@ -3,6 +3,7 @@ package com.panda.onlineshopping.entities;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,7 +13,11 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "user")
@@ -40,8 +45,21 @@ public class User implements java.io.Serializable {
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
 	protected Set<Address> addresses = new HashSet<>();
 
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JsonIgnore
+	@PrimaryKeyJoinColumn
+	private Cart cart;
+
 	public User() {
 
+	}
+
+	public Cart getCart() {
+		return cart;
+	}
+
+	public void setCart(Cart cart) {
+		this.cart = cart;
 	}
 
 	public Set<Address> getAddresses() {

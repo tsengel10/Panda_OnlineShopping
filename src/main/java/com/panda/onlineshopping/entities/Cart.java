@@ -4,30 +4,49 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "cart")
-@PrimaryKeyJoinColumn(name = "user_id")
-public class Cart extends User {
-
+public class Cart implements java.io.Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+
+	@Id
+	@Column(name = "user_id")
+	private int userId;
+
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "cart", cascade = CascadeType.ALL)
-	@JsonIgnore
 	private Set<CartItem> cartItems = new HashSet<>();
+
+	private int name;
+
+	public int getName() {
+		return name;
+	}
+
+	public void setName(int name) {
+		this.name = name;
+	}
 
 	public Cart() {
 		// TODO Auto-generated constructor stub
+	}
+
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 
 	public Set<CartItem> getCartItems() {
@@ -40,7 +59,7 @@ public class Cart extends User {
 
 	@Override
 	public String toString() {
-		return "Cart [cartItems=" + cartItems + ", userid=" + userid + "]";
+		return "Cart [userId=" + userId + ", cartItems=" + name + "]";
 	}
 
 }
