@@ -27,9 +27,19 @@ public class Vendor extends User {
 	private String phone;
 	@Column
 	private String image_link;
+	@Column
+	private int capacity_size;
 
 	public Vendor() {
 
+	}
+
+	public int getCapacity_size() {
+		return capacity_size;
+	}
+
+	public void setCapacity_size(int capacity_size) {
+		this.capacity_size = capacity_size;
 	}
 
 	public String getImage_link() {
@@ -75,8 +85,9 @@ public class Vendor extends User {
 	@Override
 	public String toString() {
 		return "Vendor [vendorid=" + vendorid + ", vendorName=" + vendorName + ", vendorCode=" + vendorCode + ", phone="
-				+ phone + ", image_link=" + image_link + ", userid=" + userid + ", username=" + username + ", password="
-				+ password + ", usertype=" + usertype + ", addresses=" + addresses + "]";
+				+ phone + ", image_link=" + image_link + ", capacity_size=" + capacity_size + ", userid=" + userid
+				+ ", username=" + username + ", password=" + password + ", usertype=" + usertype + ", email=" + email
+				+ ", addresses=" + addresses + "]";
 	}
 
 }

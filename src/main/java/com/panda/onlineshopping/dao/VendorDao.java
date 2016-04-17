@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.panda.onlineshopping.entities.Vendor;
 import com.panda.onlineshopping.utils.HibernateUtils;
+import com.panda.onlineshopping.utils.PasswordUtils;
 
 @Repository
 public class VendorDao implements IVendorDao {
@@ -16,6 +17,7 @@ public class VendorDao implements IVendorDao {
 
 	@Override
 	public void createVendor(Vendor vendor) {
+		vendor.setPassword(PasswordUtils.hashPassword(vendor.getPassword()));
 		hibernateUtil.create(vendor);
 	}
 

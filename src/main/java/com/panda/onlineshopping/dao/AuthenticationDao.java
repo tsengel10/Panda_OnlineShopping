@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.panda.onlineshopping.entities.AuthToken;
 import com.panda.onlineshopping.entities.User;
 import com.panda.onlineshopping.utils.HibernateUtils;
+import com.panda.onlineshopping.utils.PasswordUtils;
 
 @Repository
 public class AuthenticationDao implements IAuthenticationDao {
@@ -18,11 +19,14 @@ public class AuthenticationDao implements IAuthenticationDao {
 
 	@Override
 	public User authenticateUser(User user) {
-		String query = "from User where username = '" + user.getUsername() + "' and password = '" + user.getPassword()
-				+ "'";
-		User dbUser = (User) hibernateUtil.runSelectQuery(query);
-		if (dbUser != null) {
-			return dbUser;
+		String query = "from User where username = '" + user.getUsername() + "'";
+		List<User> dbUsers = hibernateUtil.runSelectQueryList(query);
+		if (!dbUsers.isEmpty()) {
+			for (User iterUser : dbUsers) {
+				if (PasswordUtils.checkPassword(user.getPassword(), iterUser.getPassword())) {
+					return iterUser;
+				}
+			}
 		}
 		return null;
 	}

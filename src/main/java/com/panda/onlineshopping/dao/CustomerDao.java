@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.panda.onlineshopping.entities.Customer;
 import com.panda.onlineshopping.utils.HibernateUtils;
+import com.panda.onlineshopping.utils.PasswordUtils;
 
 @Repository
 public class CustomerDao implements ICustomerDao {
@@ -16,6 +17,7 @@ public class CustomerDao implements ICustomerDao {
 
 	@Override
 	public void createCustomer(Customer customer) {
+		customer.setPassword(PasswordUtils.hashPassword(customer.getPassword()));
 		hibernateUtil.create(customer);
 
 	}

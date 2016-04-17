@@ -81,5 +81,15 @@
 			<artifactId>hibernate-c3p0</artifactId>
 			<version>4.3.8.Final</version>
 		</dependency>
+
+		<!-- BCrypt for password hashing -->
+		<dependency>
+			<groupId>org.mindrot</groupId>
+			<artifactId>jbcrypt</artifactId>
+			<version>0.3m</version>
+		</dependency>
+
+
 	</dependencies>
+
 </project>

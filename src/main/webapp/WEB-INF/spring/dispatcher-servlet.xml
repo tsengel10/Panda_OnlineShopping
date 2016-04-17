@@ -16,7 +16,7 @@
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<!-- This interceptor will only run in /project -->
-			<mvc:mapping path="/admin/**" />
+			<mvc:mapping path="/admin**" />
 			<bean class="com.panda.onlineshopping.interceptors.AuthInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>

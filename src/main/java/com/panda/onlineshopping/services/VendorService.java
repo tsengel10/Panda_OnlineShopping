@@ -17,7 +17,6 @@ public class VendorService implements IVendorService {
 	@Override
 	public void createVendor(Vendor vendor) {
 		vendorDao.createVendor(vendor);
-
 	}
 
 	@Override
