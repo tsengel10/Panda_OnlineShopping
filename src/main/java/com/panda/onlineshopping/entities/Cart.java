@@ -23,24 +23,24 @@ public class Cart implements java.io.Serializable {
 	@Column(name = "user_id")
 	private int userId;
 
-	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "cart", cascade = CascadeType.ALL)
 	private Set<CartItem> cartItems = new HashSet<>();
 
-	private int name;
-
-	public int getName() {
-		return name;
-	}
-
-	public void setName(int name) {
-		this.name = name;
-	}
+	@Column(name = "quantity_limit")
+	private int quantityLimit;
 
 	public Cart() {
 		// TODO Auto-generated constructor stub
 	}
 
+
+	public int getQuantityLimit() {
+		return quantityLimit;
+	}
+
+	public void setQuantityLimit(int quantityLimit) {
+		this.quantityLimit = quantityLimit;
+	}
 	public int getUserId() {
 		return userId;
 	}
@@ -55,11 +55,6 @@ public class Cart implements java.io.Serializable {
 
 	public void setCartItems(Set<CartItem> cartItems) {
 		this.cartItems = cartItems;
-	}
-
-	@Override
-	public String toString() {
-		return "Cart [userId=" + userId + ", cartItems=" + name + "]";
 	}
 
 }

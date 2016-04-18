@@ -30,8 +30,8 @@ public class CartItem implements java.io.Serializable {
 	@JsonIgnore
 	private Cart cart;
 
-	@Column(name = "inventory")
-	private String inventory;
+	@Column(name = "inventory_id")
+	private int inventoryId;
 
 	@Column(name = "quantity")
 	private int quantity;
@@ -56,12 +56,12 @@ public class CartItem implements java.io.Serializable {
 		this.cart = cart;
 	}
 
-	public String getInventory() {
-		return inventory;
+	public int getInventoryId() {
+		return inventoryId;
 	}
 
-	public void setInventory(String inventory) {
-		this.inventory = inventory;
+	public void setInventoryId(int inventoryId) {
+		this.inventoryId = inventoryId;
 	}
 
 	public int getQuantity() {
@@ -70,10 +70,5 @@ public class CartItem implements java.io.Serializable {
 
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
-	}
-
-	@Override
-	public String toString() {
-		return "CartItem [id=" + id + ", cart=" + cart + ", inventory=" + inventory + ", quantity=" + quantity + "]";
 	}
 }
