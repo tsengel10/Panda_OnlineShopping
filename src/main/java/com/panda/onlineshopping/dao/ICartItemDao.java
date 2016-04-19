@@ -10,10 +10,12 @@ public interface ICartItemDao {
 
 	public CartItem update(CartItem cartItem);
 
-	public void delete(CartItem cartItem);
-
 	public List<CartItem> getAll();
 
 	public CartItem getById(int id);
+
+	public void delete(int id);
+
+	public void delete(CartItem cartItem);
 
 }
