@@ -25,6 +25,11 @@ public class CartItemDao implements ICartItemDao {
 	}
 
 	@Override
+	public void delete(int cartItemId) {
+		hibernateUtil.delete(cartItemId, CartItem.class);
+	}
+
+	@Override
 	public void delete(CartItem cartItem) {
 		hibernateUtil.delete(cartItem);
 	}

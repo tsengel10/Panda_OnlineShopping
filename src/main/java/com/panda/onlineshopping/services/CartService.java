@@ -47,33 +47,21 @@ public class CartService implements ICartService {
 
 	@Override
 	public CartItem addItem(int userId, int inventoryId, int quantity) {
-
+		
 		Cart currentCart = cartDao.getByUserId(userId);
-		Set<CartItem> currentCartItems = currentCart.getCartItems();
-		int newQuantity = 0;
-		boolean exists = false;
-		for (CartItem currentCartItem : currentCartItems) {
+		Set<CartItem> cartItems = currentCart.getCartItems();
+		for (CartItem currentCartItem : cartItems) {
 			if (currentCartItem.getInventoryId() == inventoryId) {
-				cartItemDao.delete(currentCartItem);
-				newQuantity = quantity + currentCartItem.getQuantity();
-				exists = true;
+				currentCartItem.setQuantity(quantity + currentCartItem.getQuantity());
+				return cartItemDao.update(currentCartItem);
 			}
 		}
 
-
-		Cart cart = cartDao.getByUserId(userId);
 		CartItem newItem = new CartItem();
-		newItem.setCart(cart);
+		newItem.setCart(currentCart);
 		newItem.setInventoryId(inventoryId);
-
-		if (exists) {
-			newItem.setQuantity(newQuantity);
-			cartItemDao.create(newItem);
-		} else {
-			newItem.setQuantity(quantity);
-			cartItemDao.create(newItem);
-		}
+		newItem.setQuantity(quantity);
+		cartItemDao.create(newItem);
 		return newItem;
 	}
-
 }
