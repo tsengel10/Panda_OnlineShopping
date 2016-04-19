@@ -36,12 +36,22 @@ public class User implements java.io.Serializable {
 	protected int usertype;
 	@Column
 	protected String email;
+	@Column
+	protected String registeredDate;
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
 	protected Set<Address> addresses = new HashSet<>();
 
 	public User() {
 
+	}
+
+	public String getRegisteredDate() {
+		return registeredDate;
+	}
+
+	public void setRegisteredDate(String registeredDate) {
+		this.registeredDate = registeredDate;
 	}
 
 	public Set<Address> getAddresses() {

@@ -39,4 +39,13 @@ public class AddressDao implements IAddressDao {
 		return hibernateUtil.fetchById(userId, Address.class);
 	}
 
+	@Override
+	public Address getAddressById(int id) {
+		String query = "from Address where id = '" + id + "'";
+		Address dbAddress = (Address) hibernateUtil.runSelectQuery(query);
+		if (dbAddress != null)
+			return dbAddress;
+		return null;
+	}
+
 }

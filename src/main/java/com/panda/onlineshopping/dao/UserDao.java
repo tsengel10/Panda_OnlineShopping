@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.panda.onlineshopping.entities.Address;
 import com.panda.onlineshopping.entities.User;
+import com.panda.onlineshopping.utils.DateUtils;
 import com.panda.onlineshopping.utils.HibernateUtils;
 import com.panda.onlineshopping.utils.PasswordUtils;
 
@@ -17,6 +18,7 @@ public class UserDao implements IUserDao {
 	private HibernateUtils hibernateUtil;
 
 	public void createUser(User user) {
+		user.setRegisteredDate(DateUtils.getCurrentDateTime());
 		user.setPassword(PasswordUtils.hashPassword(user.getPassword()));
 		hibernateUtil.create(user);
 	}

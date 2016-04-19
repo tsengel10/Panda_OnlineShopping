@@ -15,4 +15,6 @@ public interface IAddressDao {
 	public List<Address> getAllAddresses();
 
 	public Address getAddressByUserId(int userId);
+
+	public Address getAddressById(int id);
 }

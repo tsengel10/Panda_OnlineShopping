@@ -12,4 +12,8 @@ public interface IAddressService {
 
 	public void deleteAddressesByUserId(int userId);
 
+	public Address getAddressById(int id);
+
+	public Address updateAddress(Address address);
+
 }

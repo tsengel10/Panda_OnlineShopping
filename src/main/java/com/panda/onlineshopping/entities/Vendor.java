@@ -1,9 +1,14 @@
 package com.panda.onlineshopping.entities;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
@@ -30,8 +35,19 @@ public class Vendor extends User {
 	@Column
 	private int capacity_size;
 
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "vendor")
+	private Set<Inventory> inventories = new HashSet<>();
+
 	public Vendor() {
 
+	}
+
+	public Set<Inventory> getInventories() {
+		return this.inventories;
+	}
+
+	public void setInventories(Set<Inventory> inventories) {
+		this.inventories = inventories;
 	}
 
 	public int getCapacity_size() {
@@ -85,9 +101,7 @@ public class Vendor extends User {
 	@Override
 	public String toString() {
 		return "Vendor [vendorid=" + vendorid + ", vendorName=" + vendorName + ", vendorCode=" + vendorCode + ", phone="
-				+ phone + ", image_link=" + image_link + ", capacity_size=" + capacity_size + ", userid=" + userid
-				+ ", username=" + username + ", password=" + password + ", usertype=" + usertype + ", email=" + email
-				+ ", addresses=" + addresses + "]";
+				+ phone + ", image_link=" + image_link + ", capacity_size=" + capacity_size + ", inventories="
+				+ inventories + "]";
 	}
-
 }

@@ -24,6 +24,16 @@ public class AddressService implements IAddressService {
 	}
 
 	@Override
+	public Address updateAddress(Address address) {
+		return addressDao.updateAddress(address);
+	}
+
+	@Override
+	public Address getAddressById(int id) {
+		return addressDao.getAddressById(id);
+	}
+
+	@Override
 	public List<Address> getAddressesByUserId(int userId) {
 		List<Address> addresses = new ArrayList<>();
 		for (Address address : adminDao.getAllAddresses()) {
